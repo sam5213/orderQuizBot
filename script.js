@@ -31,16 +31,13 @@ function askQuestion() {
     question.options.forEach(option => {
         const button = document.createElement('button');
         button.innerText = option;
-        button.onclick = () => checkAnswer(option, question.answer);
+        button.onclick = () => selectAnswer(option, question.answer);
         optionsDiv.appendChild(button);
     });
-
-    startTimer();
 }
 
-function checkAnswer(selected, correct) {
-    const currentQuestion = questions[currentQuestionIndex];
-    selectAnswer(selectedOption, currentQuestion.answer);
+function selectAnswer(selected, correct) {
+    userAnswers.push({ selected, correct }); // Сохраняем ответ пользователя
     currentQuestionIndex++;
 
     if (currentQuestionIndex < questions.length) {
@@ -48,10 +45,6 @@ function checkAnswer(selected, correct) {
     } else {
         resetQuiz();
     }
-}
-
-function selectAnswer(selected, correct) {
-    userAnswers.push({ selected, correct }); // Сохраняем ответ пользователя
 }
 
 function sendResults() {
