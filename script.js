@@ -40,7 +40,7 @@ function selectAnswer(selected, correct) {
     userAnswers.push({ selected, correct }); // Сохраняем ответ пользователя
     currentQuestionIndex++;
 
-    if (currentQuestionIndex < questions.length - 1) {
+    if (currentQuestionIndex < questions.length) {
         askQuestion();
     } else {
         resetQuiz();
