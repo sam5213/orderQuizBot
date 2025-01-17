@@ -18,6 +18,8 @@ function startQuiz() {
     currentQuestionIndex = 0;
     document.getElementById('app').style.display = 'none';
     document.getElementById('quiz').style.display = 'block';
+    document.getElementById('finish').style.display = 'none';
+    document.getElementById('results').style.display = 'none';
     askQuestion();
 }
 
