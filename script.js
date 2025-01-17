@@ -42,7 +42,7 @@ function selectAnswer(selected, correct) {
 
     if (currentQuestionIndex < questions.length - 1) {
         askQuestion();
-    else {
+    } else {
         resetQuiz();
     }
 }
