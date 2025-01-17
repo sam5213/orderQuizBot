@@ -18,6 +18,7 @@ function startQuiz() {
     currentQuestionIndex = 0;
     document.getElementById('app').style.display = 'none';
     document.getElementById('quiz').style.display = 'block';
+    document.getElementById('finish').style.display = 'none';
     askQuestion();
 }
 
@@ -59,10 +60,8 @@ function sendResults() {
     Telegram.WebApp.sendData(dataToSend);
 }
 
-document.getElementById('submit-results').onclick = sendResults; // Привязываем функцию 
-
 function resetQuiz() {
     document.getElementById('quiz').style.display = 'none';
-    //document.getElementById('app').style.display = 'block';
-    document.getElementById('submit-results').style.display = 'block';
+    document.getElementById('app').style.display = 'none';
+    document.getElementById('finish').style.display = 'block';
 }
