@@ -40,8 +40,11 @@ function selectAnswer(selected, correct) {
     userAnswers.push({ selected, correct }); // Сохраняем ответ пользователя
     currentQuestionIndex++;
 
-    if (currentQuestionIndex < questions.length) {
+    if (currentQuestionIndex < questions.length - 1) {
         askQuestion();
+    } else if (currentQuestionIndex == questions.length - 1) {
+        askQuestion();
+        document.getElementById('submit-results').style.display = 'block';
     } else {
         resetQuiz();
     }
@@ -63,6 +66,5 @@ document.getElementById('submit-results').onclick = sendResults; // Привяз
 
 function resetQuiz() {
     document.getElementById('quiz').style.display = 'none';
-    document.getElementById('submit-results').style.display = 'block';
     document.getElementById('app').style.display = 'block';
 }
