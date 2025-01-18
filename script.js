@@ -1,21 +1,11 @@
 const questions = [
     {
-        question: "We analyze your website to identify SEO errors, keyword opportunities, and competition.",
-        options: [
-            "Improve SEO rankings",
-            "Analyze competitors",
-            "Find keywords",
-            "Fix technical issues"
-        ]
+        question: "Какая тема вашего вашего Квиза?",
+        options: ["Психология", "Финансы", "Экономика", "Другое"]
     },
     {
-        question: "What is your main goal for website optimization?",
-        options: [
-            "Increase traffic",
-            "Better conversion rate",
-            "Higher rankings",
-            "User experience"
-        ]
+        question: "Сколько вопросов будет в вашем квизе (рекомендуется не больше 7-8)?",
+        options: ["только 1", "поменьше, где-то 5-6", "давайте 7-8", "больше 8"]
     }
 ];
 
