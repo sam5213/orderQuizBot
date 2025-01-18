@@ -1,29 +1,53 @@
 <!DOCTYPE html>
-<html lang="ru">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <script src="https://telegram.org/js/telegram-web-app.js"></script>
-    <title>Форма заказа квиза</title>
-    <link rel="stylesheet" href="style.css">
+    <title>Опрос от Квизика</title>
+    <link rel="stylesheet" href="styles.css">
 </head>
 <body>
     <div id="app">
-        <h1>Давайте с Вами определим требования к будущему квизу</h1>
-        <button onclick="startQuiz()">Начать квиз</button>
-    </div>
-    <div id="results" style="display: none;">
-        <h1>Результаты опроса были отправлены</h1>
-    </div>
-    <div id="quiz" style="display: none;">
-        <h2 id="question"></h2>
-        <div id="options"></div>
-    </div>
-    <div id="finish" style="display: none;">
-        <h1>Поздравляю с прохождением опроса!</h1>
-        <button onclick="sendResults()">Отправить результаты</button>
-        <button onclick="startQuiz()">Начать квиз занаво</button>
+        <div id="welcome-page" class="page active">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="content">
+                <h1>Определим требования <br>к будущему квизу</h1>
+                <button id="start-button" class="button">Поехали!</button>
+            </div>
+        </div>
+        <div id="quiz-page" class="page">
+            <div class="question-container">
+                <div class="avatar">
+                    <img src="https://hebbkx1anhila5yf.public.blob.vercel-storage.com/%D0%A1%D0%BD%D0%B8%D0%BC%D0%BE%D0%BA%20%D1%8D%D0%BA%D1%80%D0%B0%D0%BD%D0%B0%202025-01-18%20%D0%B2%2014.30.54-fXK3j8freK497aGcQyQNruCJbdXctE.png" alt="Avatar">
+                </div>
+                <div class="question-bubble">
+                    <p id="question-text"></p>
+                </div>
+            </div>
+            <div id="options-grid" class="options-grid"></div>
+        </div>
+        <div id="finish-page" class="page custom-page">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="content">
+                <h1>Поздравляю!<br>Вы успешно прошли квиз.</h1>
+                <button id="finish-button" class="button">Отправить результаты</button>
+            </div>
+        </div>
+        <div id="results-page" class="page custom-page">
+            <div class="blob blob-1"></div>
+            <div class="blob blob-2"></div>
+            <div class="blob blob-3"></div>
+            <div class="content">
+                <h1>Результаты отправлены!</h1>
+            </div>
+        </div>
     </div>
     <script src="script.js"></script>
 </body>
 </html>
+
