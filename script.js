@@ -19,6 +19,8 @@ class Quiz {
         this.answers = [];
         this.userAnswers = [];
         this.init();
+	this.availableDates = [];
+        this.selectedDate = null;
     }
 
     init() {
@@ -143,6 +145,68 @@ class Quiz {
 
         document.getElementById('finish-page').style.display = 'none';
         document.getElementById('results-page').style.display = 'flex';	
+
+	await this.fetchAvailableDates();
+        this.showBookingPage();
+    }
+
+    async fetchAvailableDates() {
+        try {
+            const response = await fetch('https://wakeupquizbot.glitch.me/get-dates');
+            const data = await response.json();
+            this.availableDates = data.dates;
+        } catch (error) {
+            console.error('Ошибка получения дат:', error);
+        }
+    }
+
+    showBookingPage() {
+        document.getElementById('results-page').style.display = 'none';
+        const container = document.getElementById('dates-container');
+        container.innerHTML = '';
+
+        this.availableDates.forEach(date => {
+            if(date.status === 'свободно') {
+                const dateElement = document.createElement('div');
+                dateElement.className = 'option';
+                dateElement.innerHTML = `
+                    ${date.date}
+                    <span class="status-free">Свободно</span>
+                `;
+                
+                dateElement.addEventListener('click', () => {
+                    document.querySelectorAll('.option').forEach(el => el.classList.remove('selected'));
+                    dateElement.classList.add('selected');
+                    this.selectedDate = date.date;
+                    document.getElementById('confirm-booking').disabled = false;
+                });
+                
+                container.appendChild(dateElement);
+            }
+        });
+
+        document.getElementById('booking-page').style.display = 'flex';
+        document.getElementById('confirm-booking').addEventListener('click', () => this.bookDate());
+    }
+
+    async bookDate() {
+        try {
+            const response = await fetch('https://wakeupquizbot.glitch.me/book-date', {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({
+                    date: this.selectedDate,
+                    user: Telegram.WebApp.initDataUnsafe.user.id
+                })
+            });
+
+            if(response.ok) {
+                document.getElementById('booking-page').style.display = 'none';
+                document.getElementById('results-page').style.display = 'flex';
+            }
+        } catch (error) {
+            console.error('Ошибка бронирования:', error);
+        }
     }
 }
 
