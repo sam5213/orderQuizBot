@@ -132,7 +132,7 @@ class Quiz {
         document.getElementById('finish-page').style.display = 'flex';	
     }
 
-    sendResults() {
+    async sendResults() {
         const resultsToSend = this.userAnswers.map((answer, index) => {
             return `Вопрос ${index + 1}: Выбран "${answer.selected}", дефолтный ответ: "${answer.correct}"`;
         }).join('\n');
